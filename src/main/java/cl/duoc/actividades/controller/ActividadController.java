@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package cl.duoc.actividades.controller;
 
 import java.util.List;
 
@@ -15,39 +15,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Actividad;
-import com.example.demo.service.ActividadService;
+import cl.duoc.actividades.model.Actividad;
+import cl.duoc.actividades.service.ActividadService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/actividades")
 public class ActividadController {
     @Autowired
-    private ActividadService servicio;
+    private ActividadService service;
 
-    @GetMapping 
-    public List<Actividad> listar() { 
-        return servicio.listar(); 
-    }
-
-    @GetMapping("/{id}") 
-    public Actividad buscar(@PathVariable Long id) { 
-        return servicio.buscar(id); 
-    }
+    @GetMapping public List<Actividad> listar() { return service.listar(); }
+    @GetMapping("/{id}") public Actividad buscar(@PathVariable Long id) { return service.buscar(id); }
 
     @PostMapping
-    public ResponseEntity<Actividad> crear(@RequestBody Actividad actividad) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(servicio.guardar(actividad));
+    public ResponseEntity<Actividad> crear(@Valid @RequestBody Actividad actividad) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(actividad));
     }
 
     @PutMapping("/{id}")
-    public Actividad actualizar(@PathVariable Long id, @RequestBody Actividad actividad) {
-        return servicio.actualizar(id, actividad);
+    public Actividad actualizar(@PathVariable Long id,
+        @Valid @RequestBody Actividad actividad) {
+        return service.actualizar(id, actividad);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void eliminar(@PathVariable Long id) { 
-        servicio.eliminar(id); 
-    }
-
+    public void eliminar(@PathVariable Long id) { service.eliminar(id); }
 }
+

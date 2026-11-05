@@ -1,12 +1,9 @@
-package com.example.demo.exception;
+package cl.duoc.actividades.exception;
 
-import java.util.Map;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -24,3 +21,4 @@ public class GlobalExceptionHandler {
     return ResponseEntity.badRequest().body(Map.of("error", mensaje));
   }
 }
+

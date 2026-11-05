@@ -1,8 +1,7 @@
-package com.example.demo.exception;
+package cl.duoc.actividades.exception;
 
 public class RecursoNoEncontradoException extends RuntimeException {
   public RecursoNoEncontradoException(String mensaje) {
     super(mensaje);
   }
 }
-

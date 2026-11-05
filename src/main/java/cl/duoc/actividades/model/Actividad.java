@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package cl.duoc.actividades.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,15 +10,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="actividad")
 public class Actividad {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
+    
     private String nombre;
     private String descripcion;
     private Integer precio;

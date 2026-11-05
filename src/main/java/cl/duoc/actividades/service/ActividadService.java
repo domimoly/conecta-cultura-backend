@@ -1,30 +1,30 @@
-package com.example.demo.service;
+package cl.duoc.actividades.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.exception.RecursoNoEncontradoException;
-import com.example.demo.model.Actividad;
-import com.example.demo.repository.ActividadRepository;
+import cl.duoc.actividades.exception.RecursoNoEncontradoException;
+import cl.duoc.actividades.model.Actividad;
+import cl.duoc.actividades.repository.ActividadRepository;
 
 @Service
 public class ActividadService {
     @Autowired
-    private ActividadRepository repositorio;
+    private ActividadRepository repository;
 
     public List<Actividad> listar() { 
-        return repositorio.findAll(); 
+        return repository.findAll(); 
     }
 
     public Actividad buscar(Long id) {
-        return repositorio.findById(id).orElseThrow(() ->
+        return repository.findById(id).orElseThrow(() ->
         new RecursoNoEncontradoException("Actividad no encontrada: " + id));
     }
 
     public Actividad guardar(Actividad actividad) {
-        return repositorio.save(actividad);
+        return repository.save(actividad);
     }
 
     public Actividad actualizar(Long id, Actividad datos) {
@@ -34,11 +34,11 @@ public class ActividadService {
         actual.setPrecio(datos.getPrecio());
         actual.setCupos(datos.getCupos());
         actual.setCategoria(datos.getCategoria());
-        return repositorio.save(actual);
+        return repository.save(actual);
     }
 
     public void eliminar(Long id) {
-        repositorio.delete(buscar(id));
+        repository.delete(buscar(id));
     }
 
 }
